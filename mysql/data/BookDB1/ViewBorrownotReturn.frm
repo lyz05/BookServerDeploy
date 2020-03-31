@@ -1,0 +1,15 @@
+TYPE=VIEW
+query=select `BookDB1`.`Borrow`.`readerno` AS `readerno`,`BookDB1`.`Borrow`.`bookno` AS `bookno`,`BookDB1`.`Borrow`.`borrowdate` AS `borrowdate`,`BookDB1`.`Borrow`.`shoulddate` AS `shoulddate`,`BookDB1`.`Borrow`.`returndate` AS `returndate` from `BookDB1`.`Borrow` where isnull(`BookDB1`.`Borrow`.`returndate`)
+md5=81b72dddb9910a9c67dde4473b865c4e
+updatable=1
+algorithm=0
+definer_user=root
+definer_host=%
+suid=2
+with_check_option=0
+timestamp=2020-02-19 13:10:16
+create-version=1
+source=select * from Borrow where returndate is null
+client_cs_name=utf8mb4
+connection_cl_name=utf8mb4_general_ci
+view_body_utf8=select `BookDB1`.`Borrow`.`readerno` AS `readerno`,`BookDB1`.`Borrow`.`bookno` AS `bookno`,`BookDB1`.`Borrow`.`borrowdate` AS `borrowdate`,`BookDB1`.`Borrow`.`shoulddate` AS `shoulddate`,`BookDB1`.`Borrow`.`returndate` AS `returndate` from `BookDB1`.`Borrow` where isnull(`BookDB1`.`Borrow`.`returndate`)

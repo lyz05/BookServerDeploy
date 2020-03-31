@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.5.60
+    restart: always
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+#    ports:
+#      - "6603:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=16a8aa61
+   
+  tomcat:
+    container_name: tomcat
+    restart: always
+    image: tomcat:7.0
+#    ports:
+#      - 8084:8080
+#      - 8009:8009
+    volumes:
+      - ./tomcat/webapps:/usr/local/tomcat/webapps
+      - ./tomcat/conf:/usr/local/tomcat/conf
+      - ./tomcat/logs:/usr/local/tomcat/logs
+    depends_on:
+      - mysql
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASS=16a8aa61
+
+  nginx:
+   restart: always
+   container_name: nginx
+   image: nginx:1.16.1
+   ports:
+    - 80:80
+    - 443:443
+   volumes: 
+    - ./nginx/conf.d:/etc/nginx/conf.d
+    - ./nginx/log:/var/log/nginx
+    - ./nginx/www:/var/www
+   depends_on:
+      - tomcat
